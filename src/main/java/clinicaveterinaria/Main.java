@@ -1,6 +1,7 @@
 package clinicaveterinaria;
 
 import clinicaveterinaria.interfaces.ITratamiento;
+import clinicaveterinaria.interfaces.Nadador;
 import clinicaveterinaria.model.*;
 import clinicaveterinaria.repository.*;
 import clinicaveterinaria.service.*;
@@ -54,9 +55,9 @@ public class Main {
         diagnosticoService.diagnosticar(citaServicio, "listo para tratamiento");
         System.out.println(reporteService.crearReporte(veterinario, citaServicio));
 
-        Animal pez = new Pez(3, "Nemo");
+        Nadador pez = new Pez(3, "Nemo");
         pez.nadar();
-        System.out.println("el pez nada pero tambien hereda caminar y volar");
+        System.out.println("el pez solo sabe nadar");
         System.out.println("indicaciones: " + tratamiento.obtenerIndicaciones());
     }
 }
