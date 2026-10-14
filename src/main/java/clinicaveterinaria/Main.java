@@ -45,7 +45,7 @@ public class Main {
         System.out.println("Ingresos del mes: " + reporteService.calcularIngresosMensual());
 
         probarServicios(reservaService, diagnosticoService, reporteService, veterinario, mascota, tratamiento);
-        new Clinica().agendarConsultaRapida(mascota, veterinario);
+        new Clinica(new DirectoVeterinario(), baseDatos).agendarConsultaRapida(mascota, veterinario);
         new ServicioClinicaCompleto(baseDatos).calcularTratamiento(tratamiento);
     }
 

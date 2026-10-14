@@ -47,10 +47,16 @@ public class BaseDatos implements IBaseDatos {
         return facturas;
     }
 
+    @Override
+    public void conectar() {
+        System.out.println("Conectado a BaseDatos.");
+    }
+
     public void registrarOperacion(String nombre) {
         auditoria.put(nombre, auditoria.getOrDefault(nombre, 0) + 1);
     }
 
+    @Override
     public Map<String, Integer> getAuditoria() {
         return auditoria;
     }
