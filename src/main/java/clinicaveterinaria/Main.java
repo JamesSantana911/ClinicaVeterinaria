@@ -1,5 +1,6 @@
 package clinicaveterinaria;
 
+import clinicaveterinaria.interfaces.Nadador;
 import clinicaveterinaria.model.*;
 import clinicaveterinaria.repository.*;
 import clinicaveterinaria.service.*;
@@ -41,19 +42,19 @@ public class Main {
         System.out.println("Mascotas de Ana Perez: " + reporteService.generarReporteMascotasPorDueno("Ana Perez").size());
         System.out.println("Ingresos del mes: " + reporteService.calcularIngresosMensual());
 
-        demostrarViolacionesSinRomperEjecucion(veterinario, mascota, tratamiento);
+        probarSistema(veterinario, mascota, tratamiento);
         new Clinica().agendarConsultaRapida(mascota, veterinario);
         new ServicioClinicaCompleto(baseDatos).calcularTratamiento(tratamiento);
     }
 
-    private static void demostrarViolacionesSinRomperEjecucion(Veterinario veterinario, Mascota mascota, Tratamiento tratamiento) {
+    private static void probarSistema(Veterinario veterinario, Mascota mascota, Tratamiento tratamiento) {
         Cita citaDesdeModelo = veterinario.reservarCita(2, mascota, LocalDate.now().plusDays(1));
-        veterinario.diagnosticar(citaDesdeModelo, "Ejemplo de SRP violado desde el modelo.");
+        veterinario.diagnosticar(citaDesdeModelo, "diagnostico de prueba");
         System.out.println(veterinario.crearReporte(citaDesdeModelo));
 
-        Animal pez = new Pez(3, "Nemo");
+        Nadador pez = new Pez(3, "Nemo");
         pez.nadar();
-        System.out.println("El pez heredó caminar() y volar(), aunque no debe usarlos.");
-        System.out.println("Tratamiento OCP violado pero funcional: " + tratamiento.obtenerIndicaciones());
+        System.out.println("el pez solo sabe nadar");
+        System.out.println("indicaciones: " + tratamiento.obtenerIndicaciones());
     }
 }
